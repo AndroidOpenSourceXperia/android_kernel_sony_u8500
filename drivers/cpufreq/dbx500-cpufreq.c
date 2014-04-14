@@ -22,19 +22,38 @@ static struct cpufreq_frequency_table db8500_freq_table[] = {
 	},
 	[1] = {
 		.index = 1,
-		.frequency = 400000,
+		.frequency = 300000,
 	},
 	[2] = {
 		.index = 2,
-		.frequency = 800000,
+		.frequency = 400000,
 	},
 	[3] = {
-		/* Used for MAX_OPP, if available */
-		.index = 3,
-		.frequency = CPUFREQ_TABLE_END,
+		.index=3,
+		.frequency = 500000,
 	},
 	[4] = {
-		.index = 4,
+		.index=4,
+		.frequency = 600000,
+	},
+	[5] = {
+		.index=5,
+		.frequency = 700000,
+	},
+	[6] = {
+		.index=6,
+		.frequency = 800000,
+	},
+	[7] = {
+		.index=7,
+		.frequency = 900000,
+	},
+	[8] = {
+		.index=8,
+		.frequency = CPUFREQ_TABLE_END,
+	},
+	[9] = {
+		.index=9,
 		.frequency = CPUFREQ_TABLE_END,
 	},
 };
@@ -64,7 +83,12 @@ static int freq_table_len;
 static enum arm_opp db8500_idx2opp[] = {
 	ARM_EXTCLK,
 	ARM_50_OPP,
+	ARM_50_OPP,
 	ARM_100_OPP,
+	ARM_100_OPP,
+	ARM_100_OPP,
+	ARM_100_OPP,
+	ARM_MAX_OPP,
 	ARM_MAX_OPP
 };
 
@@ -165,7 +189,7 @@ static void __init dbx500_cpufreq_init_maxopp_freq(void)
 	case PRCMU_FW_PROJECT_U8500:
 	case PRCMU_FW_PROJECT_U9500:
 	case PRCMU_FW_PROJECT_U8420:
-		freq_table[3].frequency = 1000000;
+		freq_table[8].frequency = 1000000;
 		break;
 	case PRCMU_FW_PROJECT_U8500_C2:
 	case PRCMU_FW_PROJECT_U9500_C2:
